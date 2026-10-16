@@ -1,0 +1,67 @@
+/* ===== 1. Design tokens: every color, size and radius is defined here ===== */
+:root {
+  color-scheme: light dark;             
+
+  /* light-dark(<light value>, <dark value>): one line per token */
+  --color-bg:        light-dark(#ffffff, #17181b);
+  --color-text:      light-dark(#222222, #eeeeee);
+  --color-muted:     light-dark(#666666, #aaaaaa);
+  --color-surface:   light-dark(#ffffff, #25272c);   /* tooltip background */
+  --color-border:    light-dark(#cccccc, #555555);
+  --color-button:    light-dark(#f1f1f1, #2a2c31);
+  --color-button-on: light-dark(#222222, #eeeeee);
+  --color-button-on-text: light-dark(#ffffff, #17181b);
+
+  --space-sm: 6px;
+  --space-md: 12px;
+  --space-lg: 16px;
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --font-base: 13px;
+  --font-small: 12px;
+  --font-title: 18px;
+}
+
+/* ===== 2. Page layout ===== */
+body {
+  margin: 0;
+  padding: var(--space-lg);
+  background: var(--color-bg);
+  color: var(--color-text);
+  font: var(--font-base) system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+h1 { margin: 0 0 4px; font-size: var(--font-title); }
+p  { margin: 0 0 var(--space-md); color: var(--color-muted); }
+
+/* ===== 3. Controls (segmented buttons) ===== */
+.controls { display: flex; flex-wrap: wrap; gap: var(--space-lg); margin-bottom: var(--space-md); }
+.group button {
+  border: 0;
+  padding: var(--space-sm) var(--space-md);
+  background: var(--color-button);
+  color: var(--color-text);
+  font: inherit;
+  cursor: pointer;
+}
+.group button:first-child { border-radius: var(--radius-md) 0 0 var(--radius-md); }
+.group button:last-child  { border-radius: 0 var(--radius-md) var(--radius-md) 0; }
+.group button.on { background: var(--color-button-on); color: var(--color-button-on-text); }
+
+/* ===== 4. Chart ===== */
+.chart { overflow-x: auto; }
+svg { display: block; max-width: 100%; height: auto; }
+svg text { fill: var(--color-text); }
+.axis path, .axis line { stroke: var(--color-text); }
+
+/* ===== 5. Tooltip ===== */
+#tip {
+  position: fixed;
+  pointer-events: none;
+  opacity: 0;
+  padding: var(--space-sm) 9px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  font-size: var(--font-small);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
